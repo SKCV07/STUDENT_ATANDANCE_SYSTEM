@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Attendance Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239ca3af' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h9V0h1v5h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v5h-1v-5h-9v5h-1v-5h-9v5h-1v-5h-9v5h-1v-5h-9v5h-1v-5h-9v5h-1v-5h-9v5h-1v-5h-9v5H0v-1h5v-9H0v-1h5v-9H0v-1h5v-9H0v-1h5v-9H0v-1h5v-9H0v-1h5v-9H0v-1h5v-9H0v-1h5v-9H0V5h6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .main-container { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+        .view { display: none; }
+        .active-view { display: block !important; }
+        .frosted-glass { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); padding: 1rem 1.5rem; border-radius: 0.5rem; color: white; font-weight: 600; z-index: 100; transition: top 0.5s ease-in-out; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        #toast.show { top: 20px; }
+        .toast-success { background-color: #28a745; }
+        .toast-error { background-color: #dc3545; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+        .calendar-day { aspect-ratio: 1 / 1; }
+    </style>
+</head>
+<body>
+    <div id="toast"></div>
+    
+    <div class="main-container">
+        <div id="firebase-error-view" class="view w-full max-w-lg text-center">
+             <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-6 rounded-lg shadow-lg">
+                 <h2 class="font-bold text-xl mb-2">Firebase Configuration Missing!</h2>
+                 <p>To connect this website to a live database, you need to add your Firebase configuration keys.</p>
+                 <p class="mt-4">Please follow these steps:</p>
+                 <ol class="text-left list-decimal list-inside mt-2 bg-red-50 p-3 rounded">
+                     <li>Go to the <a href="https://console.firebase.google.com/" target="_blank" class="font-semibold underline">Firebase Console</a> and create a new project.</li>
+                     <li>Add a Web App to your project and copy the `firebaseConfig` object.</li>
+                     <li>Open this HTML file in a code editor.</li>
+                     <li>Find the line that says <code class="bg-gray-200 px-1 rounded">/* PASTE YOUR CONFIG HERE */</code>.</li>
+                     <li>Replace that line with the code you copied from Firebase.</li>
+                 </ol>
+            </div>
+        </div>
+
+        <div id="login-view" class="view w-full max-w-md">
+             <div class="absolute top-4 left-4">
+                 <button id="show-register-btn" class="text-sm font-medium text-indigo-600 hover:text-indigo-500 bg-white/50 px-3 py-1 rounded-md shadow">Register as Teacher</button>
+             </div>
+            <div class="frosted-glass p-8 rounded-xl shadow-2xl relative">
+                <h1 class="text-3xl font-bold text-center text-slate-900 mb-2">Attendance Portal</h1>
+                <p class="text-center text-slate-600 mb-8">Please log in to continue</p>
+                <form id="login-form">
+                    <div class="mb-4">
+                        <label for="username" class="block text-sm font-medium text-slate-700 mb-1">Username / Roll No.</label>
+                        <input type="text" id="username" required class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/50">
+                    </div>
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center">
+                            <label for="password" class="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                            <button type="button" id="show-reset-password-btn" class="text-xs font-medium text-indigo-600 hover:text-indigo-500">Forgot Password?</button>
+                        </div>
+                        <input type="password" id="password" required class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/50">
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 text-white font-semibold py-2.5 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors">
+                        Login
+                    </button>
+                </form>
+                <div class="absolute bottom-4 left-4 text-xs text-slate-500">
+                    <p>Developed by: Yug & Team</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="register-view" class="view w-full max-w-md">
+            <div class="frosted-glass p-8 rounded-xl shadow-2xl">
+                <h1 class="text-3xl font-bold text-center text-slate-900 mb-2">Teacher Registration</h1>
+                <p class="text-center text-slate-600 mb-8">Create a new teacher account</p>
+                <form id="register-form">
+                    <div class="mb-4">
+                        <label for="register-username" class="block text-sm font-medium text-slate-700 mb-1">Full Name (as Username)</label>
+                        <input type="text" id="register-username" required class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/50">
+                    </div>
+                    <div class="mb-6">
+                        <label for="register-password" class="block text-sm font-medium text-slate-700 mb-1">New Password</label>
+                        <input type="password" id="register-password" required class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/50">
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 text-white font-semibold py-2.5 px-4 rounded-md hover:bg-indigo-700 transition-colors">Register</button>
+                    <button type="button" id="register-back-btn" class="w-full mt-2 text-center text-sm font-medium text-slate-600 hover:text-slate-900">Back to Login</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="reset-password-view" class="view w-full max-w-md">
+            <div class="frosted-glass p-8 rounded-xl shadow-2xl">
+                <h1 class="text-3xl font-bold text-center text-slate-900 mb-2">Reset Password</h1>
+                <p class="text-center text-slate-600 mb-8">Enter your username or roll no.</p>
+                <form id="reset-password-form">
+                    <div class="mb-4">
+                        <label for="reset-username" class="block text-sm font-medium text-slate-700 mb-1">Username / Roll No.</label>
+                        <input type="text" id="reset-username" required class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/50">
+                    </div>
+                    <div class="mb-6">
+                        <label for="reset-new-password" class="block text-sm font-medium text-slate-700 mb-1">New Password</label>
+                        <input type="password" id="reset-new-password" required class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/50">
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 text-white font-semibold py-2.5 px-4 rounded-md hover:bg-indigo-700 transition-colors">Reset Password</button>
+                    <button type="button" id="reset-back-btn" class="w-full mt-2 text-center text-sm font-medium text-slate-600 hover:text-slate-900">Back to Login</button>
+                </form>
+            </div>
+        </div>
+        
+        <div id="teacher-view" class="view w-full max-w-7xl">
+            <div class="frosted-glass p-8 rounded-xl shadow-2xl">
+                <header class="flex justify-between items-center mb-6 border-b border-slate-300 pb-4">
+                    <div>
+                        <h1 class="text-4xl font-bold text-slate-900">Teacher Dashboard</h1>
+                        <p id="teacher-welcome-msg" class="text-slate-600"></p>
+                    </div>
+                    <button id="teacher-logout-btn" class="bg-red-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-red-600 transition-colors">Logout</button>
+                </header>
+                
+                <div id="teacher-insights" class="mb-6 bg-slate-50/50 p-4 rounded-lg border">
+                    <h3 class="font-semibold text-lg mb-2 text-slate-800">Class Insights</h3>
+                     <div id="class-stats-container" class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center"></div>
+                </div>
+
+                <main class="grid md:grid-cols-12 gap-8">
+                    <div class="md:col-span-4 bg-white/50 p-6 rounded-lg shadow-md border border-white/50">
+                        <h2 class="text-2xl font-semibold mb-4 border-b pb-2">Manage Students</h2>
+                        <form id="add-student-form">
+                             <div class="mb-4">
+                                 <label for="roll-number" class="block text-sm font-medium text-slate-700 mb-1">Roll Number</label>
+                                 <input type="number" id="roll-number" placeholder="e.g., 187" required class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                             </div>
+                            <div class="mb-4">
+                                <label for="student-name" class="block text-sm font-medium text-slate-700 mb-1">Student Name</label>
+                                <input type="text" id="student-name" placeholder="e.g., Yug Mittal" required class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                            <button type="submit" class="w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors">Add Student</button>
+                        </form>
+                    </div>
+                    <div class="md:col-span-8 bg-white/50 p-6 rounded-lg shadow-md border border-white/50">
+                        <div class="flex justify-between items-center mb-4 border-b pb-2">
+                            <h2 class="text-2xl font-semibold">Mark Attendance</h2>
+                            <div>
+                                <label for="attendance-date" class="text-sm font-medium">Date:</label>
+                                <input type="date" id="attendance-date" class="border border-slate-300 rounded-md p-1">
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead>
+                                    <tr class="bg-slate-50/50 border-b">
+                                        <th class="p-3 font-semibold">Roll No.</th>
+                                        <th class="p-3 font-semibold">Name</th>
+                                        <th class="p-3 font-semibold text-center">Status</th>
+                                        <th class="p-3 font-semibold text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="teacher-table-body"></tbody>
+                            </table>
+                            <p id="teacher-no-students-msg" class="text-center text-slate-500 p-8 hidden">Add a student to get started.</p>
+                            <p id="teacher-no-date-msg" class="text-center text-slate-500 p-8">Select a date to mark attendance.</p>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <div id="student-view" class="view w-full max-w-5xl">
+            <div class="frosted-glass p-8 rounded-xl shadow-2xl">
+                 <header class="flex justify-between items-center mb-6 border-b border-slate-300 pb-4">
+                    <div>
+                        <h1 id="student-welcome-header" class="text-4xl font-bold text-slate-900"></h1>
+                        <p class="text-slate-600">Your Personal Attendance Report</p>
+                    </div>
+                    <button id="student-logout-btn" class="bg-red-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-red-600 transition-colors">Logout</button>
+                </header>
+                <main>
+                    <div id="student-stats" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 text-center"></div>
+                    
+                    <div class="bg-white/50 p-6 rounded-lg shadow-md border border-white/50">
+                        <div class="flex justify-between items-center mb-4">
+                             <h2 class="text-2xl font-semibold">Attendance Calendar</h2>
+                        </div>
+                        <div id="attendance-calendar"></div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 h-full w-full flex items-center justify-center" style="display: none; z-index: 100;">
+      <div class="relative mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <div class="mt-3 text-center">
+          <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
+            <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg leading-6 font-medium text-gray-900 mt-2" id="modal-title">Delete Student?</h3>
+          <div class="mt-2 px-7 py-3">
+            <p class="text-sm text-gray-500" id="modal-text">Are you sure you want to delete this student? This action cannot be undone.</p>
+          </div>
+          <div class="items-center px-4 py-3 space-x-4">
+            <button id="modal-confirm-btn" class="px-4 py-2 bg-red-500 text-white text-base font-medium rounded-md w-auto shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300">
+              Delete
+            </button>
+            <button id="modal-cancel-btn" class="px-4 py-2 bg-gray-200 text-gray-800 text-base font-medium rounded-md w-auto shadow-sm hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import { getFirestore, doc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+      // --- BACKEND LOGIC (Defined BEFORE it's used) ---
+      class User {
+          constructor(username, password) { this.username = username; this.passwordHash = this._hash(password); this.role = 'user';}
+          _hash(str) { let hash = 0; if (typeof str !== 'string') str = String(str); for (let i = 0; i < str.length; i++) { const char = str.charCodeAt(i); hash = ((hash << 5) - hash) + char; hash |= 0; } return hash.toString(); }
+          checkPassword(password) { return this.passwordHash === this._hash(password); }
+          resetPassword(newPassword) { this.passwordHash = this._hash(newPassword); }
+          // Converts the class instance to a plain object for Firebase
+          toPlainObject() { return { username: this.username, passwordHash: this.passwordHash, role: this.role }; }
+      }
+      class Teacher extends User { 
+          constructor(username, password) { super(username, password); this.role = 'teacher'; }
+          toPlainObject() { return super.toPlainObject(); }
+      }
+      class Student extends User { 
+          constructor(rollNumber, name) { super(String(rollNumber), 'student123'); this.rollNumber = rollNumber; this.name = name; this.role = 'student'; this.attendance = new Map(); }
+          toPlainObject() {
+              return { ...super.toPlainObject(), rollNumber: this.rollNumber, name: this.name, attendance: Object.fromEntries(this.attendance) };
+          }
+      }
+
+      const attendanceApp = {
+          students: new Map(),
+          teachers: new Map(),
+          workingDays: new Set(),
+          currentUser: null,
+          dbUnsubscribe: null,
+
+          init() {
+              this.addEventListeners();
+              this.listenForData();
+          },
+          
+          async saveData() {
+              // Convert class instances to plain objects before saving
+              const dataToSave = {
+                  students: Object.fromEntries(Array.from(this.students.values()).map(student => [student.rollNumber, student.toPlainObject()])),
+                  teachers: Object.fromEntries(Array.from(this.teachers.values()).map(teacher => [teacher.username, teacher.toPlainObject()])),
+                  workingDays: Array.from(this.workingDays)
+              };
+              try { await setDoc(dbRef, dataToSave); } 
+              catch (e) { console.error("Error writing document: ", e); this.showToast('Could not save data.', 'error'); }
+          },
+
+          listenForData() {
+              this.dbUnsubscribe = onSnapshot(dbRef, (docSnap) => {
+                  if (docSnap.exists()) {
+                      const data = docSnap.data();
+                      try {
+                          this.workingDays = new Set(data.workingDays || []);
+                          
+                          this.teachers = new Map();
+                          for (const username in (data.teachers || {})) {
+                              const teacherData = data.teachers[username];
+                              const teacher = new Teacher(teacherData.username, ''); // Pass empty pwd as hash is loaded directly
+                              teacher.passwordHash = teacherData.passwordHash;
+                              this.teachers.set(username, teacher);
+                          }
+
+                          this.students = new Map();
+                          for (const roll in (data.students || {})) {
+                              const studentData = data.students[roll];
+                               if (studentData && studentData.rollNumber) {
+                                  const student = new Student(studentData.rollNumber, studentData.name);
+                                  student.passwordHash = studentData.passwordHash;
+                                  student.attendance = new Map(Object.entries(studentData.attendance || {}));
+                                  this.students.set(parseInt(roll), student);
+                              }
+                          }
+                      } catch (e) { console.error("Error parsing data from Firestore:", e); }
+                  } 
+                  if (this.teachers.size === 0) {
+                      this.teachers.set('teacher', new Teacher('teacher', 'teacher123'));
+                      this.saveData();
+                  }
+                  this.refreshCurrentView();
+              }, (error) => { console.error("Error listening to database:", error); this.showToast("Connection to database failed.", "error"); });
+          },
+
+          refreshCurrentView() {
+            if (this.currentUser) {
+                if (this.currentUser.role === 'teacher') {
+                    this.renderTeacherDashboard();
+                } else if (this.currentUser.role === 'student') {
+                    this.currentUser = this.students.get(this.currentUser.rollNumber);
+                    if (this.currentUser) {
+                        this.renderStudentDashboard();
+                    } else {
+                        this.logout();
+                    }
+                }
+            } else {
+                this.switchView('login-view');
+            }
+          },
+          
+          login(username, password) {
+              if (this.teachers.has(username) && this.teachers.get(username).checkPassword(password)) {
+                  this.currentUser = this.teachers.get(username);
+                  this.switchView('teacher-view');
+                  return true;
+              }
+              const studentId = parseInt(username);
+              if (!isNaN(studentId) && this.students.has(studentId) && this.students.get(studentId).checkPassword(password)) {
+                  this.currentUser = this.students.get(studentId);
+                  this.switchView('student-view');
+                  return true;
+              }
+              return false;
+          },
+
+          logout() { this.currentUser = null; this.switchView('login-view'); document.getElementById('login-form').reset(); },
+          
+          async registerTeacher(username, password) {
+              if (!username || !password) { this.showToast('Username and password cannot be empty.', 'error'); return false; }
+              if (this.teachers.has(username)) { this.showToast('This username is already taken.', 'error'); return false; }
+              const newTeacher = new Teacher(username, password);
+              this.teachers.set(username, newTeacher);
+              await this.saveData();
+              this.showToast('Registration successful! Please log in.', 'success');
+              return true;
+          },
+
+          async resetPassword(username, newPassword) {
+              if (!newPassword) { this.showToast('New password cannot be empty.', 'error'); return false; }
+              if (this.teachers.has(username)) {
+                  this.teachers.get(username).resetPassword(newPassword);
+                  await this.saveData(); this.showToast('Teacher password has been reset.', 'success'); return true;
+              }
+              const studentId = parseInt(username);
+              if (!isNaN(studentId) && this.students.has(studentId)) {
+                  this.students.get(studentId).resetPassword(newPassword);
+                  await this.saveData(); this.showToast('Student password has been reset.', 'success'); return true;
+              }
+              this.showToast('User not found.', 'error'); return false;
+          },
+
+          async addStudent(rollNumber, name) {
+              if (!rollNumber || !name.trim()) { this.showToast('Roll number and name cannot be empty.', 'error'); return; }
+              if (this.students.has(rollNumber)) { this.showToast(`Student with Roll Number ${rollNumber} already exists.`, 'error'); return; }
+              const newStudent = new Student(rollNumber, name);
+              this.workingDays.forEach(date => newStudent.attendance.set(date, 'Absent'));
+              this.students.set(rollNumber, newStudent);
+              await this.saveData();
+              this.showToast('Student added successfully.', 'success');
+          },
+        
+          // --- FIX: Replaced confirm() with a custom modal ---
+          deleteStudent(rollNumber) {
+              const student = this.students.get(rollNumber);
+              if (!student) {
+                  this.showToast('Error: Student not found.', 'error');
+                  return;
+              }
+              const modal = document.getElementById('confirmation-modal');
+              const modalText = document.getElementById('modal-text');
+              const confirmBtn = document.getElementById('modal-confirm-btn');
+
+              modalText.textContent = `Are you sure you want to delete ${student.name} (Roll No. ${rollNumber})? This action cannot be undone.`;
+              confirmBtn.dataset.rollNumber = rollNumber;
+              modal.style.display = 'flex';
+          },
+
+          async _performDelete(rollNumber) {
+              if (this.students.has(rollNumber)) {
+                  this.students.delete(rollNumber);
+                  await this.saveData();
+                  this.showToast('Student deleted successfully.', 'success');
+              } else {
+                  this.showToast('Error: Student not found.', 'error');
+              }
+          },
+
+          async logWorkingDay(date) {
+              if (!date || this.workingDays.has(date)) return;
+              this.workingDays.add(date);
+              this.students.forEach(student => { if (!student.attendance.has(date)) student.attendance.set(date, 'Absent'); });
+              await this.saveData();
+          },
+
+          async markAttendance(rollNumber, date, status) {
+              if (this.students.has(rollNumber) && this.workingDays.has(date)) {
+                  this.students.get(rollNumber).attendance.set(date, status);
+                  await this.saveData();
+              }
+          },
+
+          addEventListeners() {
+              document.getElementById('login-form').addEventListener('submit', (e) => { e.preventDefault(); const user = document.getElementById('username').value.trim(); const pass = document.getElementById('password').value; if (!this.login(user, pass)) { this.showToast('Invalid credentials.', 'error'); } });
+              document.getElementById('register-form').addEventListener('submit', (e) => { e.preventDefault(); const user = document.getElementById('register-username').value.trim(); const pass = document.getElementById('register-password').value; if(this.registerTeacher(user, pass)) { e.target.reset(); this.switchView('login-view'); } });
+              document.getElementById('reset-password-form').addEventListener('submit', (e) => { e.preventDefault(); const user = document.getElementById('reset-username').value.trim(); const pass = document.getElementById('reset-new-password').value; if(this.resetPassword(user, pass)) { e.target.reset(); this.switchView('login-view'); } });
+              document.getElementById('teacher-logout-btn').addEventListener('click', () => this.logout());
+              document.getElementById('student-logout-btn').addEventListener('click', () => this.logout());
+              document.getElementById('show-register-btn').addEventListener('click', () => this.switchView('register-view'));
+              document.getElementById('register-back-btn').addEventListener('click', () => this.switchView('login-view'));
+              document.getElementById('show-reset-password-btn').addEventListener('click', () => this.switchView('reset-password-view'));
+              document.getElementById('reset-back-btn').addEventListener('click', () => this.switchView('login-view'));
+              document.getElementById('add-student-form').addEventListener('submit', (e) => { e.preventDefault(); const roll = parseInt(document.getElementById('roll-number').value); const name = document.getElementById('student-name').value.trim(); this.addStudent(roll, name); e.target.reset(); });
+              document.getElementById('attendance-date').addEventListener('change', (e) => { const selectedDate = e.target.value; if (selectedDate) { this.logWorkingDay(selectedDate); } });
+
+              // --- FIX: Event listeners for the custom confirmation modal ---
+              const modal = document.getElementById('confirmation-modal');
+              document.getElementById('modal-cancel-btn').addEventListener('click', () => {
+                  modal.style.display = 'none';
+              });
+              document.getElementById('modal-confirm-btn').addEventListener('click', (e) => {
+                  const rollNumber = parseInt(e.target.dataset.rollNumber);
+                  if (!isNaN(rollNumber)) {
+                      this._performDelete(rollNumber);
+                  }
+                  modal.style.display = 'none';
+              });
+          },
+          
+          switchView(viewId) {
+              document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
+              document.getElementById(viewId).style.display = 'block';
+              const navBtn = document.getElementById('show-register-btn');
+              
+              if(viewId === 'login-view') {
+                  navBtn.style.display = 'block';
+              } else {
+                  navBtn.style.display = 'none';
+              }
+
+              if (viewId === 'teacher-view') {
+                  document.getElementById('teacher-welcome-msg').textContent = `Welcome, ${this.currentUser.username}!`;
+                  const dateInput = document.getElementById('attendance-date');
+                  if(!dateInput.value) dateInput.value = new Date().toISOString().split('T')[0];
+                  this.logWorkingDay(dateInput.value);
+                  this.renderTeacherDashboard();
+              } else if (viewId === 'student-view') {
+                  this.renderStudentDashboard();
+              }
+          },
+
+          renderTeacherDashboard() { this.renderTeacherTable(); this.renderTeacherInsights(); },
+          renderTeacherInsights() {
+              const container = document.getElementById('class-stats-container'); container.innerHTML = '';
+              const totalStudents = this.students.size; let totalAttendance = 0; let studentsAtRisk = [];
+              const lastFiveDays = Array.from(this.workingDays).sort().slice(-5);
+              this.students.forEach(student => {
+                  let presentCount = 0;
+                  this.workingDays.forEach(day => { if(student.attendance.get(day) === 'Present') presentCount++; });
+                  totalAttendance += this.workingDays.size > 0 ? (presentCount / this.workingDays.size) : 0;
+                  let absencesInLastFive = 0;
+                  if(lastFiveDays.length > 0) { lastFiveDays.forEach(day => { if(student.attendance.get(day) !== 'Present') absencesInLastFive++; }); if (absencesInLastFive >= 3) studentsAtRisk.push(student.name); }
+              });
+              const avgAttendance = totalStudents > 0 ? (totalAttendance / totalStudents * 100).toFixed(1) : 0;
+              const stats = [ { label: 'Total Students', value: totalStudents }, { label: 'Avg. Attendance', value: `${avgAttendance}%` }, { label: 'Students at Risk', value: studentsAtRisk.length, title: studentsAtRisk.join(', ') || 'None' } ];
+              stats.forEach(stat => { container.innerHTML += `<div class="bg-white/50 p-3 rounded-lg shadow-sm border border-white/50" title="${stat.title || ''}"><p class="text-sm text-slate-500">${stat.label}</p><p class="text-2xl font-bold ${stat.color || 'text-slate-800'}">${stat.value}</p></div>`; });
+          },
+          renderTeacherTable() {
+              const tableBody = document.getElementById('teacher-table-body'); const selectedDate = document.getElementById('attendance-date').value; tableBody.innerHTML = '';
+              if (this.students.size === 0) { document.getElementById('teacher-no-students-msg').style.display = 'block'; document.getElementById('teacher-no-date-msg').style.display = 'none'; return; }
+              document.getElementById('teacher-no-students-msg').style.display = 'none';
+              if (!selectedDate) { document.getElementById('teacher-no-date-msg').style.display = 'block'; return; }
+              document.getElementById('teacher-no-date-msg').style.display = 'none';
+              const sortedStudents = Array.from(this.students.values()).sort((a,b) => a.rollNumber - b.rollNumber);
+              sortedStudents.forEach(student => {
+                  const status = student.attendance.get(selectedDate) || 'Absent'; const statusColor = status === 'Present' ? 'text-green-600' : 'text-red-600';
+                  const row = document.createElement('tr'); row.className = 'border-b hover:bg-slate-50/50';
+                  row.innerHTML = `<td class="p-3">${student.rollNumber}</td><td class="p-3">${student.name}</td><td class="p-3 text-center font-semibold ${statusColor}">${status}</td><td class="p-3 text-center space-x-1"><button onclick="attendanceApp.markAttendance(${student.rollNumber}, '${selectedDate}', 'Present')" class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-200 rounded-md hover:bg-green-300">P</button><button onclick="attendanceApp.markAttendance(${student.rollNumber}, '${selectedDate}', 'Absent')" class="px-2 py-1 text-xs font-semibold text-red-800 bg-red-200 rounded-md hover:bg-red-300">A</button><button onclick="attendanceApp.deleteStudent(${student.rollNumber})" class="px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-200 rounded-md hover:bg-gray-300">Del</button></td>`;
+                  tableBody.appendChild(row);
+              });
+          },
+          renderStudentDashboard() {
+              const student = this.currentUser; if (!student) return;
+              document.getElementById('student-welcome-header').textContent = `Welcome, ${student.name}!`;
+              const statsContainer = document.getElementById('student-stats'); statsContainer.innerHTML = '';
+              let presentDays = 0; student.attendance.forEach(status => { if (status === 'Present') presentDays++; });
+              const totalDays = this.workingDays.size; const percentage = totalDays > 0 ? ((presentDays / totalDays) * 100).toFixed(1) : 0;
+              const stats = [ { label: 'Total Days', value: totalDays }, { label: 'Present', value: presentDays, color: 'text-green-600' }, { label: 'Absent', value: totalDays - presentDays, color: 'text-red-600' }, { label: 'Attendance %', value: `${percentage}%`, color: 'text-indigo-600' } ];
+              stats.forEach(stat => { statsContainer.innerHTML += `<div class="bg-white/50 p-4 rounded-lg shadow-sm border border-white/50"><p class="text-sm text-slate-500">${stat.label}</p><p class="text-3xl font-bold ${stat.color || ''}">${stat.value}</p></div>`; });
+              this.renderStudentCalendar(student);
+          },
+          renderStudentCalendar(student) {
+              const container = document.getElementById('attendance-calendar'); container.innerHTML = '';
+              const today = new Date(); const month = today.getMonth(); const year = today.getFullYear();
+              const monthName = today.toLocaleString('default', { month: 'long' });
+              container.innerHTML += `<h3 class="text-lg font-semibold text-center mb-2">${monthName} ${year}</h3>`;
+              const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+              let calendarHtml = '<div class="calendar-grid">';
+              daysOfWeek.forEach(day => { calendarHtml += `<div class="font-bold text-center text-xs text-slate-500">${day}</div>`; });
+              const firstDayOfMonth = new Date(year, month, 1).getDay();
+              const daysInMonth = new Date(year, month + 1, 0).getDate();
+              for (let i = 0; i < firstDayOfMonth; i++) calendarHtml += '<div></div>';
+              for (let day = 1; day <= daysInMonth; day++) {
+                  const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                  let dayClass = 'bg-slate-200/50 text-slate-400';
+                  if (this.workingDays.has(dateStr)) {
+                      const status = student.attendance.get(dateStr);
+                      if (status === 'Present') dayClass = 'bg-green-500 text-white';
+                      else if (status === 'Absent') dayClass = 'bg-red-500 text-white';
+                  }
+                   if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) dayClass += ' ring-2 ring-indigo-500';
+                  calendarHtml += `<div class="calendar-day flex items-center justify-center text-sm font-semibold rounded-full ${dayClass}">${day}</div>`;
+              }
+              calendarHtml += '</div>'; container.innerHTML += calendarHtml;
+          },
+          showToast(message, type = 'success') {
+              const toast = document.getElementById('toast'); toast.textContent = message;
+              toast.className = 'fixed'; 
+              toast.classList.add(type === 'success' ? 'toast-success' : 'toast-error');
+              toast.classList.add('show');
+              setTimeout(() => { toast.classList.remove('show'); }, 3000);
+          }
+      };
+      
+      // --- IMPORTANT: Firebase Initialization ---
+      const firebaseConfig = {
+        apiKey: "AIzaSyA0j97cAyuD8ylQhR3YzdqhQzZPD8EyI74",
+        authDomain: "student-attendance-app-24bf8.firebaseapp.com",
+        projectId: "student-attendance-app-24bf8",
+        storageBucket: "student-attendance-app-24bf8.appspot.com",
+        messagingSenderId: "1040839751075",
+        appId: "1:1040839751075:web:d15f6657588e7ffc905616"
+      };
+      
+      let app, db, dbRef;
+      if (!firebaseConfig.projectId) {
+          document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
+          document.getElementById('firebase-error-view').style.display = 'block';
+      } else {
+          app = initializeApp(firebaseConfig);
+          db = getFirestore(app);
+          dbRef = doc(db, "attendance", "data");
+          // --- FIX: Expose app object to the global window scope for inline onclick handlers to work ---
+          window.attendanceApp = attendanceApp; 
+          attendanceApp.init(); // Initialize the app AFTER firebase is ready
+      }
+
+    </script>
+</body>
+</html>
